@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>熊洋洋 | Videographer</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #111;
+            color: #fff;
+            font-family: Arial, "Microsoft YaHei", sans-serif;
+        }
+
+        /* 首页 */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 400;
+            letter-spacing: 12px;
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            letter-spacing: 6px;
+            color: #999;
+            margin-bottom: 45px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 36px;
+            border: 1px solid #fff;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #fff;
+            color: #111;
+        }
+
+        /* 关于 */
+        .about {
+            min-height: 50vh;
+            padding: 120px 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .about h2 {
+            font-size: 36px;
+            font-weight: 400;
+            letter-spacing: 5px;
+            margin-bottom: 35px;
+        }
+
+        .about p {
+            max-width: 650px;
+            margin: 0 auto;
+            color: #999;
+            line-height: 2;
+            font-size: 16px;
+        }
+
+        /* 底部 */
+        footer {
+            padding: 40px 20px;
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+        }
+
+        /* 手机适配 */
+        @media (max-width: 600px) {
+
+            .hero h1 {
+                font-size: 42px;
+                letter-spacing: 7px;
+            }
+
+            .subtitle {
+                font-size: 13px;
+                letter-spacing: 4px;
+            }
+
+            .about h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <section class="hero">
+
+        <h1>熊洋洋</h1>
+
+        <div class="subtitle">
+            VIDEOGRAPHER
+        </div>
+
+        <a href="#about" class="btn">
+            ENTER
+        </a>
+
+    </section>
+
+
+    <section class="about" id="about">
+
+        <h2>ABOUT ME</h2>
+
+        <p>
+            专注商业影像、人物采访、活动纪录与视觉内容创作。
+            <br>
+            用镜头记录人物、故事与真实发生的瞬间。
+        </p>
+
+    </section>
+
+
+    <footer>
+
+        © 2026 熊洋洋 · Videographer
+
+    </footer>
+
+</body>
+
+</html>
