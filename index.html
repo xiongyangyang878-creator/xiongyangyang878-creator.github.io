@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>熊洋洋 | Videographer</title>
+    <title>熊洋洋｜个人作品集</title>
 
     <style>
 
@@ -22,16 +22,23 @@
         body {
             background: #0d0d0d;
             color: #ffffff;
-            font-family: Arial, "Microsoft YaHei", sans-serif;
+            font-family:
+                "Microsoft YaHei",
+                "PingFang SC",
+                Arial,
+                sans-serif;
         }
 
-        /* ==================== 导航 ==================== */
+        /* =========================
+           顶部导航
+        ========================= */
 
         nav {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
+
             padding: 25px 50px;
 
             display: flex;
@@ -39,6 +46,12 @@
             align-items: center;
 
             z-index: 100;
+
+            background: linear-gradient(
+                to bottom,
+                rgba(0,0,0,0.5),
+                transparent
+            );
         }
 
         .logo {
@@ -47,20 +60,31 @@
         }
 
         nav a {
-            color: white;
+            color: #ffffff;
             text-decoration: none;
+
             margin-left: 30px;
-            font-size: 12px;
-            letter-spacing: 2px;
+
+            font-size: 14px;
+
+            transition: 0.3s;
         }
 
-        /* ==================== 首页 ==================== */
+        nav a:hover {
+            opacity: 0.5;
+        }
+
+
+        /* =========================
+           首页
+        ========================= */
 
         .hero {
             height: 100vh;
 
             display: flex;
             flex-direction: column;
+
             justify-content: center;
             align-items: center;
 
@@ -70,128 +94,191 @@
         .hero h1 {
             font-size: 70px;
             font-weight: 400;
+
             letter-spacing: 12px;
-            margin-bottom: 20px;
+
+            margin-bottom: 25px;
         }
 
         .hero p {
-            color: #888;
-            font-size: 15px;
-            letter-spacing: 6px;
-            margin-bottom: 45px;
+            color: #999999;
+
+            font-size: 18px;
+
+            letter-spacing: 5px;
+
+            margin-bottom: 50px;
         }
 
         .enter {
-            border: 1px solid #777;
-            padding: 15px 40px;
+            display: inline-block;
 
-            color: white;
+            padding: 15px 45px;
+
+            border: 1px solid #777777;
+
+            color: #ffffff;
+
             text-decoration: none;
 
-            letter-spacing: 3px;
+            font-size: 15px;
 
             transition: 0.3s;
         }
 
         .enter:hover {
-            background: white;
-            color: black;
+            background: #ffffff;
+            color: #000000;
         }
 
-        /* ==================== 通用区域 ==================== */
+
+        /* =========================
+           通用区域
+        ========================= */
 
         section {
             padding: 120px 8%;
         }
 
         .section-title {
-            font-size: 36px;
+            font-size: 38px;
+
             font-weight: 400;
+
             letter-spacing: 6px;
+
             margin-bottom: 60px;
         }
 
-        /* ==================== 作品 ==================== */
+
+        /* =========================
+           视频作品
+        ========================= */
 
         .works {
             display: grid;
+
             grid-template-columns: repeat(2, 1fr);
+
             gap: 25px;
         }
 
         .work {
-            height: 350px;
+            height: 360px;
 
             background: #1a1a1a;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
-            color: #666;
+            color: #777777;
 
             transition: 0.4s;
         }
 
         .work:hover {
             transform: scale(1.02);
-            background: #222;
+
+            background: #222222;
+
+            color: #ffffff;
         }
 
         .work span {
-            font-size: 15px;
+            font-size: 18px;
+
             letter-spacing: 3px;
         }
 
-        /* ==================== 照片 ==================== */
+
+        /* =========================
+           照片
+        ========================= */
 
         .photos {
             display: grid;
+
             grid-template-columns: repeat(3, 1fr);
+
             gap: 15px;
         }
 
         .photo {
             height: 300px;
+
             background: #1a1a1a;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
-            color: #666;
+            color: #777777;
+
+            transition: 0.4s;
         }
 
-        /* ==================== 关于 ==================== */
+        .photo:hover {
+            transform: scale(1.02);
+
+            background: #222222;
+
+            color: #ffffff;
+        }
+
+
+        /* =========================
+           关于我
+        ========================= */
 
         .about {
-            max-width: 750px;
+            max-width: 800px;
         }
 
         .about p {
-            color: #999;
-            line-height: 2;
-            font-size: 16px;
-        }
+            color: #aaaaaa;
 
-        /* ==================== 联系 ==================== */
+            font-size: 17px;
 
-        .contact p {
-            color: #999;
             line-height: 2.2;
         }
 
-        /* ==================== 页脚 ==================== */
 
-        footer {
-            padding: 50px;
-            text-align: center;
+        /* =========================
+           联系方式
+        ========================= */
 
-            color: #555;
-            font-size: 12px;
+        .contact p {
+            color: #aaaaaa;
+
+            font-size: 16px;
+
+            line-height: 2.5;
         }
 
-        /* ==================== 手机 ==================== */
+
+        /* =========================
+           页脚
+        ========================= */
+
+        footer {
+            padding: 50px 20px;
+
+            text-align: center;
+
+            color: #555555;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           手机适配
+        ========================= */
 
         @media (max-width: 700px) {
 
@@ -199,17 +286,25 @@
                 padding: 20px;
             }
 
-            nav div:last-child {
-                display: none;
+            nav a {
+                margin-left: 10px;
+
+                font-size: 12px;
+            }
+
+            .logo {
+                font-size: 14px;
             }
 
             .hero h1 {
-                font-size: 42px;
+                font-size: 44px;
+
                 letter-spacing: 7px;
             }
 
             .hero p {
-                font-size: 12px;
+                font-size: 15px;
+
                 letter-spacing: 4px;
             }
 
@@ -229,6 +324,14 @@
                 grid-template-columns: 1fr;
             }
 
+            .work {
+                height: 250px;
+            }
+
+            .photo {
+                height: 300px;
+            }
+
         }
 
     </style>
@@ -239,71 +342,81 @@
 <body>
 
 
-    <!-- 导航 -->
+    <!-- =========================
+         导航
+    ========================= -->
 
     <nav>
 
         <div class="logo">
-            YANGYANG
+            熊洋洋
         </div>
 
         <div>
 
-            <a href="#works">WORKS</a>
+            <a href="#home">首页</a>
 
-            <a href="#photo">PHOTO</a>
+            <a href="#works">作品</a>
 
-            <a href="#about">ABOUT</a>
+            <a href="#photo">照片</a>
 
-            <a href="#contact">CONTACT</a>
+            <a href="#about">关于我</a>
+
+            <a href="#contact">联系我</a>
 
         </div>
 
     </nav>
 
 
-    <!-- 首页 -->
+    <!-- =========================
+         首页
+    ========================= -->
 
-    <section class="hero">
+    <section class="hero" id="home">
 
-        <h1>熊洋洋</h1>
+        <h1>
+            熊洋洋
+        </h1>
 
         <p>
-            VIDEOGRAPHER
+            摄像师 · 影像创作者
         </p>
 
         <a href="#works" class="enter">
-            ENTER
+            查看作品
         </a>
 
     </section>
 
 
-    <!-- 视频作品 -->
+    <!-- =========================
+         视频作品
+    ========================= -->
 
     <section id="works">
 
         <h2 class="section-title">
-            WORKS
+            视频作品
         </h2>
 
 
         <div class="works">
 
             <div class="work">
-                <span>VIDEO 01</span>
+                <span>作品一</span>
             </div>
 
             <div class="work">
-                <span>VIDEO 02</span>
+                <span>作品二</span>
             </div>
 
             <div class="work">
-                <span>VIDEO 03</span>
+                <span>作品三</span>
             </div>
 
             <div class="work">
-                <span>VIDEO 04</span>
+                <span>作品四</span>
             </div>
 
         </div>
@@ -311,39 +424,41 @@
     </section>
 
 
-    <!-- 照片 -->
+    <!-- =========================
+         照片作品
+    ========================= -->
 
     <section id="photo">
 
         <h2 class="section-title">
-            PHOTO
+            照片作品
         </h2>
 
 
         <div class="photos">
 
             <div class="photo">
-                PHOTO 01
+                照片一
             </div>
 
             <div class="photo">
-                PHOTO 02
+                照片二
             </div>
 
             <div class="photo">
-                PHOTO 03
+                照片三
             </div>
 
             <div class="photo">
-                PHOTO 04
+                照片四
             </div>
 
             <div class="photo">
-                PHOTO 05
+                照片五
             </div>
 
             <div class="photo">
-                PHOTO 06
+                照片六
             </div>
 
         </div>
@@ -351,27 +466,32 @@
     </section>
 
 
-    <!-- 关于我 -->
+    <!-- =========================
+         关于我
+    ========================= -->
 
     <section id="about">
 
         <h2 class="section-title">
-            ABOUT
+            关于我
         </h2>
+
 
         <div class="about">
 
             <p>
 
-                熊洋洋 · Videographer
+                一名摄像师和影像创作者。
 
                 <br><br>
 
-                专注商业影像、人物采访、活动纪录与视觉内容创作。
+                主要从事商业影像、人物采访、活动纪录、
+                企业宣传等视频拍摄工作。
 
                 <br><br>
 
-                用镜头记录人物、故事以及真实发生的瞬间。
+                我希望通过镜头记录人物、故事以及真实发生的瞬间，
+                不断学习和提升自己的影像表达能力。
 
             </p>
 
@@ -380,20 +500,31 @@
     </section>
 
 
-    <!-- 联系 -->
+    <!-- =========================
+         联系我
+    ========================= -->
 
     <section id="contact">
 
         <h2 class="section-title">
-            CONTACT
+            联系我
         </h2>
+
 
         <div class="contact">
 
             <p>
-                WECHAT：熊洋洋
+
+                微信：17152156883
+
                 <br>
-                EMAIL：your@email.com
+
+                邮箱：2050137537@qq.com
+
+                <br>
+
+                如果有拍摄需求，欢迎联系我。
+
             </p>
 
         </div>
@@ -401,9 +532,13 @@
     </section>
 
 
+    <!-- =========================
+         页脚
+    ========================= -->
+
     <footer>
 
-        © 2026 YANGYANG · VIDEOGRAPHER
+        © 2026 熊洋洋 · 个人影像作品集
 
     </footer>
 
