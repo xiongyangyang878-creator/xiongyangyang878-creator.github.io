@@ -199,12 +199,14 @@
         ========================= */
 
         .photos {
-            display: grid;
+    column-count: 3;
+    column-gap: 15px;
+}
 
-            grid-template-columns: repeat(3, 1fr);
-
-            gap: 15px;
-        }
+.photo {
+    break-inside: avoid;
+    margin-bottom: 15px;
+}
 
   .photo {
     background: #1a1a1a;
