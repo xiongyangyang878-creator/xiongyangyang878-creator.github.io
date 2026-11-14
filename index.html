@@ -79,17 +79,34 @@
            首页
         ========================= */
 
-        .hero {
-            height: 100vh;
+        
+.hero {
+    height: 100vh;
+    min-height: 600px;
 
-            display: flex;
-            flex-direction: column;
+    display: flex;
+    flex-direction: column;
 
-            justify-content: center;
-            align-items: center;
+    justify-content: center;
+    align-items: center;
 
-            text-align: center;
-        }
+    text-align: center;
+
+    position: relative;
+    isolation: isolate;
+
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.38),
+            rgba(0, 0, 0, 0.38)
+        ),
+        url("images/work-background.jpg");
+
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
 
         .hero h1 {
             font-size: 70px;
@@ -314,7 +331,9 @@
 
                 letter-spacing: 4px;
             }
-
+.hero {
+    background-position: center center;
+}
             section {
                 padding: 80px 20px;
             }
