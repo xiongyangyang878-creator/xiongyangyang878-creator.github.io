@@ -449,6 +449,66 @@
     width: 100%;
 }
 
+/* ===== 响应式照片墙优化 ===== */
+
+.photos {
+    column-count: 3;
+    column-gap: 15px;
+    width: 100%;
+}
+
+.photo {
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    margin-bottom: 15px;
+    height: auto;
+    overflow: hidden;
+}
+
+.photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* 平板：两列 */
+@media (max-width: 900px) {
+    .photos {
+        column-count: 2;
+        column-gap: 12px;
+    }
+
+    .photo {
+        margin-bottom: 12px;
+    }
+}
+
+/* 手机：两列 */
+@media (max-width: 700px) {
+    .photos {
+        column-count: 2;
+        column-gap: 10px;
+    }
+
+    .photo {
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    .photo img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+/* 极窄屏幕：一列 */
+@media (max-width: 360px) {
+    .photos {
+        column-count: 1;
+    }
+}
+
     </style>
 
 </head>
