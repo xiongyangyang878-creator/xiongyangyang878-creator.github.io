@@ -514,7 +514,7 @@
 
     <div class="video-grid video-grid-single">
         <div class="video-card">
-            <video controls playsinline preload="metadata" controlsList="nodownload" oncontextmenu="return false;">
+            <video controls playsinline preload="none" controlsList="nodownload" oncontextmenu="return false;">
                 <source src="https://pub-4a06884f58184737979ac256c6d942de.r2.dev/video%20(7).mp4" type="video/mp4">
             </video>
         </div>
@@ -531,49 +531,49 @@
     <div class="video-grid">
 
         <div class="video-card">
-            <video controls playsinline preload="metadata" controlsList="nodownload" oncontextmenu="return false;">
+            <video controls playsinline preload="none" controlsList="nodownload" oncontextmenu="return false;">
                 <source src="https://pub-4a06884f58184737979ac256c6d942de.r2.dev/video%20(1).mp4" type="video/mp4">
             </video>
         </div>
 
         <div class="video-card">
-            <video controls playsinline preload="metadata" controlsList="nodownload" oncontextmenu="return false;">
+            <video controls playsinline preload="none" controlsList="nodownload" oncontextmenu="return false;">
                 <source src="https://pub-4a06884f58184737979ac256c6d942de.r2.dev/video%20(3).mp4" type="video/mp4">
             </video>
         </div>
 
         <div class="video-card">
-            <video controls playsinline preload="metadata" controlsList="nodownload" oncontextmenu="return false;">
+            <video controls playsinline preload="none" controlsList="nodownload" oncontextmenu="return false;">
                 <source src="https://pub-4a06884f58184737979ac256c6d942de.r2.dev/video%20(4).mp4" type="video/mp4">
             </video>
         </div>
 
         <div class="video-card">
-            <video controls playsinline preload="metadata" controlsList="nodownload" oncontextmenu="return false;">
+            <video controls playsinline preload="none" controlsList="nodownload" oncontextmenu="return false;">
                 <source src="https://pub-4a06884f58184737979ac256c6d942de.r2.dev/video%20(5).mp4" type="video/mp4">
             </video>
         </div>
 
         <div class="video-card">
-            <video controls playsinline preload="metadata" controlsList="nodownload" oncontextmenu="return false;">
+            <video controls playsinline preload="none" controlsList="nodownload" oncontextmenu="return false;">
                 <source src="https://pub-4a06884f58184737979ac256c6d942de.r2.dev/video%20(6).mp4" type="video/mp4">
             </video>
         </div>
 
         <div class="video-card">
-            <video controls playsinline preload="metadata" controlsList="nodownload" oncontextmenu="return false;">
+            <video controls playsinline preload="none" controlsList="nodownload" oncontextmenu="return false;">
                 <source src="https://pub-4a06884f58184737979ac256c6d942de.r2.dev/video%20(8).mp4" type="video/mp4">
             </video>
         </div>
 
         <div class="video-card">
-            <video controls playsinline preload="metadata" controlsList="nodownload" oncontextmenu="return false;">
+            <video controls playsinline preload="none" controlsList="nodownload" oncontextmenu="return false;">
                 <source src="https://pub-4a06884f58184737979ac256c6d942de.r2.dev/video%20(9).mp4" type="video/mp4">
             </video>
         </div>
 
         <div class="video-card">
-            <video controls playsinline preload="metadata" controlsList="nodownload" oncontextmenu="return false;">
+            <video controls playsinline preload="none" controlsList="nodownload" oncontextmenu="return false;">
                 <source src="https://pub-4a06884f58184737979ac256c6d942de.r2.dev/video%20(2).mp4" type="video/mp4">
             </video>
         </div>
@@ -698,6 +698,23 @@
 
     </footer>
 
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const videos = document.querySelectorAll('.video-grid video');
+
+    videos.forEach(function (video) {
+        // 点击播放时，暂停其他视频
+        video.addEventListener('play', function () {
+            videos.forEach(function (otherVideo) {
+                if (otherVideo !== video) {
+                    otherVideo.pause();
+                }
+            });
+        });
+    });
+});
+</script>
 
 </body>
 
