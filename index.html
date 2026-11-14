@@ -388,6 +388,48 @@
     }
 }
 
+/* 视频介绍 */
+.video-intro {
+    max-width: 760px;
+    color: #999;
+    font-size: 14px;
+    line-height: 1.9;
+    margin: 0 0 38px;
+}
+
+/* 视频分类板块 */
+.video-group {
+    margin-bottom: 48px;
+}
+
+.video-group-heading {
+    margin-bottom: 20px;
+}
+
+.video-group-heading h3 {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0 0 10px;
+}
+
+.video-group-heading p {
+    color: #888;
+    font-size: 13px;
+    line-height: 1.8;
+    margin: 0;
+}
+
+/* 单独展示的人物纪实视频 */
+.video-grid-single {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.video-grid-single .video-card {
+    max-width: 760px;
+    width: 100%;
+}
+
     </style>
 
 </head>
@@ -457,89 +499,86 @@
 
        
 
-<div class="video-grid">
 
-    <div class="video-card">
-       <video controls playsinline preload="metadata" controlsList="nodownload" oncontextmenu="return false;">
-            <source src="https://pub-4a06884f58184737979ac256c6d942de.r2.dev/video%20(7).mp4" type="video/mp4">
-        </video>
-        <div class="video-info">
-            <h3>人物纪实</h3>
-        </div>
+<p class="video-intro">
+    通过镜头记录人物、活动与真实场景，作品涵盖人物纪实及拍摄花絮。
+    展示拍摄现场、镜头运用与影像记录能力，呈现实际拍摄经验与现场执行过程。
+</p>
+
+<!-- 人物纪实 -->
+<div class="video-group">
+    <div class="video-group-heading">
+        <h3>人物纪实</h3>
+        <p>以真实人物为拍摄主体，通过镜头记录人物状态与细节，注重画面表达、情绪捕捉与纪实感。</p>
     </div>
 
-    <div class="video-card">
-        <video controls playsinline preload="metadata" controlsList="nodownload" oncontextmenu="return false;">
-            <source src="https://pub-4a06884f58184737979ac256c6d942de.r2.dev/video%20(1).mp4" type="video/mp4">
-        </video>
-        <div class="video-info">
-            <h3>拍摄花絮</h3>
+    <div class="video-grid video-grid-single">
+        <div class="video-card">
+            <video controls playsinline preload="metadata" controlsList="nodownload" oncontextmenu="return false;">
+                <source src="https://pub-4a06884f58184737979ac256c6d942de.r2.dev/video%20(7).mp4" type="video/mp4">
+            </video>
         </div>
     </div>
+</div>
 
-    <div class="video-card">
-        <video controls playsinline preload="metadata" controlsList="nodownload" oncontextmenu="return false;">
-            <source src="https://pub-4a06884f58184737979ac256c6d942de.r2.dev/video%20(3).mp4" type="video/mp4">
-        </video>
-        <div class="video-info">
-            <h3>拍摄花絮</h3>
-        </div>
+<!-- 拍摄花絮 -->
+<div class="video-group">
+    <div class="video-group-heading">
+        <h3>拍摄花絮</h3>
+        <p>记录实际拍摄现场与幕后工作，展现拍摄过程、现场配合及影像制作中的工作状态。</p>
     </div>
 
-    <div class="video-card">
-        <video controls playsinline preload="metadata" controlsList="nodownload" oncontextmenu="return false;">
-            <source src="https://pub-4a06884f58184737979ac256c6d942de.r2.dev/video%20(4).mp4" type="video/mp4">
-        </video>
-        <div class="video-info">
-            <h3>拍摄花絮</h3>
-        </div>
-    </div>
+    <div class="video-grid">
 
-    <div class="video-card">
-       <video controls playsinline preload="metadata" controlsList="nodownload" oncontextmenu="return false;">
-            <source src="https://pub-4a06884f58184737979ac256c6d942de.r2.dev/video%20(5).mp4" type="video/mp4">
-        </video>
-        <div class="video-info">
-            <h3>拍摄花絮</h3>
+        <div class="video-card">
+            <video controls playsinline preload="metadata" controlsList="nodownload" oncontextmenu="return false;">
+                <source src="https://pub-4a06884f58184737979ac256c6d942de.r2.dev/video%20(1).mp4" type="video/mp4">
+            </video>
         </div>
-    </div>
 
-    <div class="video-card">
-       <video controls playsinline preload="metadata" controlsList="nodownload" oncontextmenu="return false;">
-            <source src="https://pub-4a06884f58184737979ac256c6d942de.r2.dev/video%20(6).mp4" type="video/mp4">
-        </video>
-        <div class="video-info">
-            <h3>拍摄花絮</h3>
+        <div class="video-card">
+            <video controls playsinline preload="metadata" controlsList="nodownload" oncontextmenu="return false;">
+                <source src="https://pub-4a06884f58184737979ac256c6d942de.r2.dev/video%20(3).mp4" type="video/mp4">
+            </video>
         </div>
-    </div>
 
-    <div class="video-card">
-        <video controls playsinline preload="metadata" controlsList="nodownload" oncontextmenu="return false;">
-            <source src="https://pub-4a06884f58184737979ac256c6d942de.r2.dev/video%20(8).mp4" type="video/mp4">
-        </video>
-        <div class="video-info">
-            <h3>拍摄花絮</h3>
+        <div class="video-card">
+            <video controls playsinline preload="metadata" controlsList="nodownload" oncontextmenu="return false;">
+                <source src="https://pub-4a06884f58184737979ac256c6d942de.r2.dev/video%20(4).mp4" type="video/mp4">
+            </video>
         </div>
-    </div>
 
-    <div class="video-card">
-       <video controls playsinline preload="metadata" controlsList="nodownload" oncontextmenu="return false;">
-            <source src="https://pub-4a06884f58184737979ac256c6d942de.r2.dev/video%20(9).mp4" type="video/mp4">
-        </video>
-        <div class="video-info">
-            <h3>拍摄花絮</h3>
+        <div class="video-card">
+            <video controls playsinline preload="metadata" controlsList="nodownload" oncontextmenu="return false;">
+                <source src="https://pub-4a06884f58184737979ac256c6d942de.r2.dev/video%20(5).mp4" type="video/mp4">
+            </video>
         </div>
-    </div>
 
-    <div class="video-card">
-        <video controls playsinline preload="metadata" controlsList="nodownload" oncontextmenu="return false;">
-            <source src="https://pub-4a06884f58184737979ac256c6d942de.r2.dev/video%20(2).mp4" type="video/mp4">
-        </video>
-        <div class="video-info">
-            <h3>拍摄花絮</h3>
+        <div class="video-card">
+            <video controls playsinline preload="metadata" controlsList="nodownload" oncontextmenu="return false;">
+                <source src="https://pub-4a06884f58184737979ac256c6d942de.r2.dev/video%20(6).mp4" type="video/mp4">
+            </video>
         </div>
-    </div>
 
+        <div class="video-card">
+            <video controls playsinline preload="metadata" controlsList="nodownload" oncontextmenu="return false;">
+                <source src="https://pub-4a06884f58184737979ac256c6d942de.r2.dev/video%20(8).mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="video-card">
+            <video controls playsinline preload="metadata" controlsList="nodownload" oncontextmenu="return false;">
+                <source src="https://pub-4a06884f58184737979ac256c6d942de.r2.dev/video%20(9).mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="video-card">
+            <video controls playsinline preload="metadata" controlsList="nodownload" oncontextmenu="return false;">
+                <source src="https://pub-4a06884f58184737979ac256c6d942de.r2.dev/video%20(2).mp4" type="video/mp4">
+            </video>
+        </div>
+
+    </div>
 </div>
 
 
