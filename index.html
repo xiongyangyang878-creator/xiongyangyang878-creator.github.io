@@ -340,15 +340,16 @@
             }
 
         }
+
 /* 视频作品展示 */
 .video-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 24px;
+    gap: 28px 22px;
 }
 
 .video-card {
-    background: #171717;
+    background: #141414;
     border: 1px solid #292929;
     border-radius: 12px;
     overflow: hidden;
@@ -369,28 +370,24 @@
 }
 
 .video-info {
-    padding: 16px 18px;
+    padding: 15px 18px;
 }
 
 .video-info h3 {
     margin: 0;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 500;
-    color: #fff;
-}
-
-.video-info p {
-    margin: 8px 0 0;
-    font-size: 13px;
-    color: #888;
+    letter-spacing: 1px;
+    color: #eee;
 }
 
 @media (max-width: 768px) {
     .video-grid {
         grid-template-columns: 1fr;
-        gap: 18px;
+        gap: 20px;
     }
 }
+
     </style>
 
 </head>
