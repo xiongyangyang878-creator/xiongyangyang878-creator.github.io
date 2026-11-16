@@ -331,7 +331,14 @@
             object-fit: contain;
             transition: transform .5s ease;
         }
-
+/* 照片保护：限制拖拽、选择和手机长按菜单 */
+.photo img,
+.photo-viewer img {
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
         .photo:hover {
             transform: translateY(-2px);
         }
@@ -847,7 +854,25 @@
                     });
                 });
             });
+// 照片保护：禁用照片区域的右键菜单和图片拖拽
+const protectedAreas = document.querySelectorAll('.photos, .photo-viewer');
 
+protectedAreas.forEach(function (area) {
+    area.addEventListener('contextmenu', function (event) {
+        event.preventDefault();
+    });
+
+    area.addEventListener('dragstart', function (event) {
+        if (event.target.tagName === 'IMG') {
+            event.preventDefault();
+        }
+    });
+});
+
+// 禁止照片被拖动
+document.querySelectorAll('.photos img, .photo-viewer img').forEach(function (img) {
+    img.setAttribute('draggable', 'false');
+});
             // 照片放大、序号、上一张/下一张
             const photos = Array.from(document.querySelectorAll('.photos .photo img'));
             const viewer = document.getElementById('photoViewer');
