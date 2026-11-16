@@ -508,7 +508,123 @@
         column-count: 1;
     }
 }
+/* =========================
+   照片全屏放大
+========================= */
 
+.photo {
+    cursor: zoom-in;
+}
+
+.photo-viewer {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.96);
+    align-items: center;
+    justify-content: center;
+    padding: 60px 80px;
+}
+
+.photo-viewer.active {
+    display: flex;
+}
+
+.photo-viewer img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+    user-select: none;
+}
+
+.photo-viewer-close,
+.photo-viewer-prev,
+.photo-viewer-next {
+    position: absolute;
+    border: none;
+    background: rgba(255,255,255,0.12);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.photo-viewer-close:hover,
+.photo-viewer-prev:hover,
+.photo-viewer-next:hover {
+    background: rgba(255,255,255,0.28);
+}
+
+.photo-viewer-close {
+    top: 25px;
+    right: 30px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 28px;
+}
+
+.photo-viewer-prev,
+.photo-viewer-next {
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 60px;
+    border-radius: 6px;
+    font-size: 32px;
+}
+
+.photo-viewer-prev {
+    left: 25px;
+}
+
+.photo-viewer-next {
+    right: 25px;
+}
+
+.photo-viewer-counter {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ccc;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+@media (max-width: 700px) {
+    .photo-viewer {
+        padding: 50px 12px;
+    }
+
+    .photo-viewer-prev,
+    .photo-viewer-next {
+        width: 38px;
+        height: 48px;
+        font-size: 25px;
+    }
+
+    .photo-viewer-prev {
+        left: 8px;
+    }
+
+    .photo-viewer-next {
+        right: 8px;
+    }
+
+    .photo-viewer-close {
+        top: 12px;
+        right: 12px;
+    }
+
+    .photo-viewer-counter {
+        bottom: 18px;
+    }
+}
     </style>
 
 </head>
@@ -757,6 +873,20 @@
 <div class="photo"><img src="images/照片%20(64).jpg" alt="" loading="lazy"></div>
 <div class="photo"><img src="images/照片%20(65).jpg" alt="" loading="lazy"></div>
 </div>
+      <!-- 照片放大浏览窗口 -->
+<div class="photo-viewer" id="photoViewer">
+
+    <button class="photo-viewer-close" id="photoClose" aria-label="关闭">×</button>
+
+    <button class="photo-viewer-prev" id="photoPrev" aria-label="上一张">‹</button>
+
+    <img id="photoViewerImage" src="" alt="放大照片">
+
+    <button class="photo-viewer-next" id="photoNext" aria-label="下一张">›</button>
+
+    <div class="photo-viewer-counter" id="photoCounter">1 / 65</div>
+
+</div>  
     </section>
 
 
@@ -853,7 +983,92 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
 
+    const photos = Array.from(
+        document.querySelectorAll('.photos .photo img')
+    );
+
+    const viewer = document.getElementById('photoViewer');
+    const viewerImage = document.getElementById('photoViewerImage');
+    const counter = document.getElementById('photoCounter');
+
+    const closeBtn = document.getElementById('photoClose');
+    const prevBtn = document.getElementById('photoPrev');
+    const nextBtn = document.getElementById('photoNext');
+
+    let currentIndex = 0;
+    let touchStartX = 0;
+
+    function showPhoto(index) {
+        currentIndex = (index + photos.length) % photos.length;
+
+        const photo = photos[currentIndex];
+
+        viewerImage.src = photo.currentSrc || photo.src;
+        viewerImage.alt = photo.alt || '作品照片';
+
+        counter.textContent = (currentIndex + 1) + ' / ' + photos.length;
+
+        viewer.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeViewer() {
+        viewer.classList.remove('active');
+        viewerImage.src = '';
+        document.body.style.overflow = '';
+    }
+
+    function showNext() {
+        showPhoto(currentIndex + 1);
+    }
+
+    function showPrev() {
+        showPhoto(currentIndex - 1);
+    }
+
+    photos.forEach(function (photo, index) {
+        photo.addEventListener('click', function () {
+            showPhoto(index);
+        });
+    });
+
+    closeBtn.addEventListener('click', closeViewer);
+    nextBtn.addEventListener('click', showNext);
+    prevBtn.addEventListener('click', showPrev);
+
+    viewer.addEventListener('click', function (event) {
+        if (event.target === viewer) {
+            closeViewer();
+        }
+    });
+
+    document.addEventListener('keydown', function (event) {
+        if (!viewer.classList.contains('active')) return;
+
+        if (event.key === 'Escape') closeViewer();
+        if (event.key === 'ArrowRight') showNext();
+        if (event.key === 'ArrowLeft') showPrev();
+    });
+
+    viewerImage.addEventListener('touchstart', function (event) {
+        touchStartX = event.changedTouches[0].screenX;
+    }, { passive: true });
+
+    viewerImage.addEventListener('touchend', function (event) {
+        const touchEndX = event.changedTouches[0].screenX;
+        const distance = touchEndX - touchStartX;
+
+        if (Math.abs(distance) > 50) {
+            if (distance < 0) showNext();
+            else showPrev();
+        }
+    }, { passive: true });
+
+});
+</script>
 </body>
 
 </html>
