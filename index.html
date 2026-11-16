@@ -299,32 +299,51 @@
         }
 
         /* 照片墙 */
-        .photos {
-            column-count: 3;
-            column-gap: 15px;
-            width: 100%;
-        }
+        /* 照片墙：逐排布局 */
+.photos {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
 
-        .photo {
-            break-inside: avoid;
-            -webkit-column-break-inside: avoid;
-            margin-bottom: 15px;
-            overflow: hidden;
-            background: #1a1a1a;
-            cursor: zoom-in;
-            transition: transform .35s ease, opacity .75s ease, filter .75s ease;
-            opacity: 0;
-            transform: translateY(22px);
-            filter: blur(5px);
-        }
+.photo-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    width: 100%;
+}
 
-        .photo.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-            filter: blur(0);
-        }
+.photo-row.reverse {
+    flex-direction: row-reverse;
+}
 
-        .photo img {
+.photo {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    overflow: hidden;
+    background: #1a1a1a;
+    cursor: zoom-in;
+    transition: transform .35s ease, opacity .75s ease, filter .75s ease;
+    opacity: 0;
+    transform: translateY(22px);
+    filter: blur(5px);
+}
+
+.photo.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+}
+
+.photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    transition: transform .5s ease;
+}
             display: block;
             width: 100%;
             height: auto;
@@ -479,14 +498,7 @@
                 font-size: clamp(32px, 4.4vw, 46px);
             }
 
-            .photos {
-                column-count: 2;
-                column-gap: 12px;
-            }
-
-            .photo {
-                margin-bottom: 12px;
-            }
+           
         }
 
         /* 手机 */
@@ -559,14 +571,7 @@
                 gap: 20px;
             }
 
-            .photos {
-                column-count: 2;
-                column-gap: 10px;
-            }
-
-            .photo {
-                margin-bottom: 10px;
-            }
+           
 
             .photo-viewer {
                 padding: 50px 12px;
@@ -598,9 +603,7 @@
                 font-size: 10px;
             }
 
-            .photos {
-                column-count: 1;
-            }
+            
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -906,67 +909,123 @@ document.querySelectorAll('.photos img, .photo-viewer img').forEach(function (im
                 });
             });
 
-            // 照片墙按页面顺序逐张显现，避免图片加载完成顺序不同造成跳动
-            const photoCards = Array.from(document.querySelectorAll('.photos .photo'));
-            if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                const pendingPhotos = new Set();
-                let revealing = false;
+        
+// 照片墙：逐排蛇形出现
+const photoCards = Array.from(document.querySelectorAll('.photos .photo'));
+const photoContainer = document.querySelector('.photos');
 
-                function addToPhotoQueue(card) {
-                    if (card.dataset.ready === 'true') return;
-                    card.dataset.ready = 'true';
-                    pendingPhotos.add(card);
-                    processPhotoQueue();
-                }
+const columns = window.innerWidth <= 360 ? 1 :
+                window.innerWidth <= 900 ? 2 : 3;
 
-                async function processPhotoQueue() {
-                    if (revealing) return;
-                    revealing = true;
-                    while (pendingPhotos.size) {
-                        const nextCard = Array.from(pendingPhotos).sort(function (a, b) {
-                            return photoCards.indexOf(a) - photoCards.indexOf(b);
-                        })[0];
-                        pendingPhotos.delete(nextCard);
-                        const img = nextCard.querySelector('img');
-                        if (img && img.complete && img.naturalWidth > 0 && img.decode) {
-                            try { await img.decode(); } catch (error) {}
-                        }
-                        nextCard.classList.add('is-visible');
-                        await new Promise(function (resolve) { setTimeout(resolve, 115); });
-                    }
-                    revealing = false;
-                }
+// 按屏幕列数，把照片分成一排一排
+const photoRows = [];
 
-                const photoObserver = new IntersectionObserver(function (entries) {
-                    entries.forEach(function (entry) {
-                        if (!entry.isIntersecting) return;
-                        const card = entry.target;
-                        const img = card.querySelector('img');
-                        if (!img) {
-                            addToPhotoQueue(card);
-                            photoObserver.unobserve(card);
-                            return;
-                        }
-                        if (img.complete && img.naturalWidth > 0) {
-                            addToPhotoQueue(card);
-                            photoObserver.unobserve(card);
-                        } else {
-                            img.addEventListener('load', function () {
-                                addToPhotoQueue(card);
-                                photoObserver.unobserve(card);
-                            }, { once: true });
-                            img.addEventListener('error', function () {
-                                addToPhotoQueue(card);
-                                photoObserver.unobserve(card);
-                            }, { once: true });
-                        }
-                    });
-                }, { threshold: 0.05, rootMargin: '0px 0px 80px 0px' });
+for (let i = 0; i < photoCards.length; i += columns) {
+    const row = document.createElement('div');
+    row.className = 'photo-row';
 
-                photoCards.forEach(function (card) { photoObserver.observe(card); });
-            } else {
-                photoCards.forEach(function (card) { card.classList.add('is-visible'); });
+    const rowIndex = photoRows.length;
+
+    // 偶数排从左往右，奇数排从右往左
+    if (rowIndex % 2 === 1) {
+        row.classList.add('reverse');
+    }
+
+    const rowCards = photoCards.slice(i, i + columns);
+
+    rowCards.forEach(function (card) {
+        row.appendChild(card);
+    });
+
+    row.dataset.rowIndex = rowIndex;
+    photoRows.push(row);
+    photoContainer.appendChild(row);
+}
+
+// 按排顺序进入动画队列
+if ('IntersectionObserver' in window &&
+    !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+
+    const pendingRows = new Set();
+    let processing = false;
+
+    async function waitForImage(img) {
+        if (!img) return;
+
+        if (!img.complete) {
+            await new Promise(function (resolve) {
+                img.addEventListener('load', resolve, { once: true });
+                img.addEventListener('error', resolve, { once: true });
+            });
+        }
+
+        if (img.complete && img.naturalWidth > 0 && img.decode) {
+            try {
+                await img.decode();
+            } catch (error) {}
+        }
+    }
+
+    async function processRows() {
+        if (processing) return;
+        processing = true;
+
+        while (pendingRows.size > 0) {
+            const row = Array.from(pendingRows).sort(function (a, b) {
+                return Number(a.dataset.rowIndex) -
+                       Number(b.dataset.rowIndex);
+            })[0];
+
+            pendingRows.delete(row);
+
+            // 第二排、第四排等，从视觉上的右侧开始
+            const cards = Array.from(row.children);
+
+            if (row.classList.contains('reverse')) {
+                cards.reverse();
             }
+
+            // 当前排的照片逐张加载、逐张出现
+            for (const card of cards) {
+                const img = card.querySelector('img');
+
+                await waitForImage(img);
+
+                card.classList.add('is-visible');
+
+                await new Promise(function (resolve) {
+                    setTimeout(resolve, 115);
+                });
+            }
+        }
+
+        processing = false;
+    }
+
+    const rowObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+
+            pendingRows.add(entry.target);
+            rowObserver.unobserve(entry.target);
+        });
+
+        processRows();
+    }, {
+        threshold: 0.05,
+        rootMargin: '0px 0px 100px 0px'
+    });
+
+    photoRows.forEach(function (row) {
+        rowObserver.observe(row);
+    });
+
+} else {
+    photoCards.forEach(function (card) {
+        card.classList.add('is-visible');
+    });
+}
+
 
             closeBtn.addEventListener('click', closeViewer);
             nextBtn.addEventListener('click', function () { showPhoto(currentIndex + 1); });
