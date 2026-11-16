@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="theme-color" content="#0d0d0d">
     <title>熊洋洋｜个人作品集</title>
 
     <style>
-
         * {
             margin: 0;
             padding: 0;
@@ -17,1058 +15,905 @@
 
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 90px;
         }
 
         body {
             background: #0d0d0d;
-            color: #ffffff;
-            font-family:
-                "Microsoft YaHei",
-                "PingFang SC",
-                Arial,
-                sans-serif;
+            color: #fff;
+            font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
         }
 
-        /* =========================
-           顶部导航
-        ========================= */
-
+        /* 顶部导航 */
         nav {
             position: fixed;
-            top: 0;
-            left: 0;
+            inset: 0 0 auto 0;
             width: 100%;
-
-            padding: 25px 50px;
-
+            padding: 22px 5.5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-
             z-index: 100;
-
-            background: linear-gradient(
-                to bottom,
-                rgba(0,0,0,0.5),
-                transparent
-            );
+            background: linear-gradient(to bottom, rgba(0,0,0,.82), rgba(0,0,0,0));
+            backdrop-filter: blur(5px);
         }
 
         .logo {
-            font-size: 18px;
-            letter-spacing: 4px;
+            color: #fff;
+            font-size: 17px;
+            letter-spacing: 3px;
+            text-decoration: none;
+            white-space: nowrap;
         }
 
         nav a {
-            color: #ffffff;
+            color: #ddd;
             text-decoration: none;
-
-            margin-left: 30px;
-
-            font-size: 14px;
-
-            transition: 0.3s;
+            margin-left: 28px;
+            font-size: 13px;
+            transition: color .3s ease, opacity .3s ease;
         }
 
         nav a:hover {
-            opacity: 0.5;
+            color: #fff;
+            opacity: .65;
         }
 
+        /* 首页：左文右图 */
+        .hero {
+            min-height: 100vh;
+            padding: 130px 8% 70px;
+            display: grid;
+            grid-template-columns: minmax(0, 1.08fr) minmax(320px, .82fr);
+            align-items: center;
+            gap: clamp(38px, 6vw, 90px);
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(ellipse at 12% 45%, rgba(95,95,95,.13), transparent 48%),
+                #0d0d0d;
+        }
 
-        /* =========================
-           首页
-        ========================= */
+        .hero-copy {
+            max-width: 720px;
+            position: relative;
+            z-index: 2;
+            animation: riseIn .9s ease both;
+        }
 
-        
-.hero {
-    height: 100vh;
-    min-height: 600px;
-
-    display: flex;
-    flex-direction: column;
-
-    justify-content: center;
-    align-items: center;
-
-    text-align: center;
-
-    position: relative;
-    isolation: isolate;
-
-    background-image:
-        linear-gradient(
-            rgba(0, 0, 0, 0.38),
-            rgba(0, 0, 0, 0.38)
-        ),
-        url("images/work-background.jpg");
-
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-}
-
-
-        .hero h1 {
-            font-size: 70px;
-            font-weight: 400;
-
-            letter-spacing: 12px;
-
+        .hero-kicker {
+            color: #aaa;
+            font-size: 13px;
+            letter-spacing: 3px;
             margin-bottom: 25px;
         }
 
-        .hero p {
-            color: #999999;
-
-            font-size: 18px;
-
-            letter-spacing: 5px;
-
-            margin-bottom: 50px;
+        .hero-title {
+            font-size: clamp(34px, 4.1vw, 58px);
+            line-height: 1.35;
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin-bottom: 22px;
         }
 
-        .enter {
-            display: inline-block;
-
-            padding: 15px 45px;
-
-            border: 1px solid #777777;
-
-            color: #ffffff;
-
-            text-decoration: none;
-
+        .hero-summary {
+            color: #aaa;
             font-size: 15px;
-
-            transition: 0.3s;
+            line-height: 2;
+            letter-spacing: 1px;
+            max-width: 560px;
+            margin-bottom: 34px;
         }
 
-        .enter:hover {
-            background: #ffffff;
-            color: #000000;
+        .eyebrow {
+            color: #aaa;
+            font-size: 11px;
+            letter-spacing: 3px;
+            margin-bottom: 13px;
         }
 
+        .about-copy {
+            max-width: 590px;
+            color: #b5b5b5;
+            font-size: 14px;
+            line-height: 2.05;
+        }
 
-        /* =========================
-           通用区域
-        ========================= */
+        .about-copy p + p {
+            margin-top: 9px;
+        }
 
-        section {
-            padding: 120px 8%;
+        .hero-divider {
+            width: 100%;
+            max-width: 570px;
+            height: 1px;
+            background: #333;
+            margin: 27px 0 24px;
+        }
+
+        .project-list {
+            max-width: 620px;
+            display: grid;
+            gap: 17px;
+        }
+
+        .project-item {
+            padding-left: 15px;
+            border-left: 1px solid #666;
+        }
+
+        .project-item h3 {
+            color: #eee;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.7;
+            margin-bottom: 4px;
+        }
+
+        .project-item p {
+            color: #999;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .hero-image-wrap {
+            position: relative;
+            width: 100%;
+            max-width: 510px;
+            justify-self: end;
+            animation: imageReveal 1.1s .15s ease both;
+        }
+
+        .hero-image-wrap::after {
+            content: "";
+            position: absolute;
+            inset: 14px -14px -14px 14px;
+            border: 1px solid rgba(255,255,255,.22);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .hero-image {
+            display: block;
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+            object-position: center;
+            filter: brightness(.82);
+            box-shadow: 0 24px 70px rgba(0,0,0,.38);
+            animation: photoDrift 12s ease-in-out infinite alternate;
+        }
+
+        .image-caption {
+            margin-top: 22px;
+            color: #777;
+            font-size: 10px;
+            letter-spacing: 2.5px;
+            text-align: right;
+        }
+
+        .scroll-cue {
+            display: inline-flex;
+            align-items: center;
+            gap: 13px;
+            color: #888;
+            text-decoration: none;
+            font-size: 10px;
+            letter-spacing: 2px;
+            margin-top: 28px;
+            transition: color .3s ease;
+        }
+
+        .scroll-cue:hover {
+            color: #fff;
+        }
+
+        .scroll-cue::after {
+            content: "↓";
+            font-size: 17px;
+        }
+
+        /* 通用内容区域 */
+        section.content-section {
+            padding: 105px 8%;
         }
 
         .section-title {
-            font-size: 38px;
-
+            font-size: 31px;
             font-weight: 400;
-
-            letter-spacing: 6px;
-
-            margin-bottom: 60px;
+            letter-spacing: 4px;
+            margin-bottom: 18px;
         }
 
+        .section-subtitle {
+            color: #888;
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-bottom: 42px;
+        }
 
-        /* =========================
-           视频作品
-        ========================= */
+        /* 视频作品 */
+        .video-intro {
+            max-width: 760px;
+            color: #999;
+            font-size: 14px;
+            line-height: 1.9;
+            margin: 0 0 38px;
+        }
 
-        .works {
+        .video-group {
+            margin-bottom: 48px;
+        }
+
+        .video-group-heading {
+            margin-bottom: 20px;
+        }
+
+        .video-group-heading h3 {
+            color: #fff;
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .video-group-heading p {
+            color: #888;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .video-grid {
             display: grid;
-
-            grid-template-columns: repeat(2, 1fr);
-
-            gap: 25px;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 28px 22px;
         }
 
-        .work {
-            height: 360px;
-
-            background: #1a1a1a;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            color: #777777;
-
-            transition: 0.4s;
+        .video-grid-single {
+            grid-template-columns: minmax(0, 1fr);
         }
 
-        .work:hover {
-            transform: scale(1.02);
-
-            background: #222222;
-
-            color: #ffffff;
+        .video-card {
+            background: #141414;
+            border: 1px solid #292929;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform .3s ease, border-color .3s ease;
         }
 
-        .work span {
-            font-size: 18px;
-
-            letter-spacing: 3px;
+        .video-card:hover {
+            transform: translateY(-4px);
+            border-color: #555;
         }
 
+        .video-card video {
+            display: block;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: contain;
+            background: #000;
+        }
 
-        /* =========================
-           照片
-        ========================= */
+        .video-grid-single .video-card {
+            max-width: 760px;
+            width: 100%;
+        }
 
+        /* 照片墙 */
         .photos {
-    column-count: 3;
-    column-gap: 15px;
-}
+            column-count: 3;
+            column-gap: 15px;
+            width: 100%;
+        }
 
-.photo {
-    break-inside: avoid;
-    margin-bottom: 15px;
-}
+        .photo {
+            break-inside: avoid;
+            -webkit-column-break-inside: avoid;
+            margin-bottom: 15px;
+            overflow: hidden;
+            background: #1a1a1a;
+            cursor: zoom-in;
+            transition: transform .35s ease;
+        }
 
-  .photo {
-    background: #1a1a1a;
-    overflow: hidden;
-    transition: 0.4s;
-}
-
-.photo img {
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: 0.5s;
-}
-    display: block;
-
-    transition: 0.5s;
-}
-
-.photo:hover img {
-    transform: scale(1.05);
-}
+        .photo img {
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            transition: transform .5s ease;
+        }
 
         .photo:hover {
-            transform: scale(1.02);
-
-            background: #222222;
-
-            color: #ffffff;
+            transform: translateY(-2px);
         }
 
-
-        /* =========================
-           关于我
-        ========================= */
-
-        .about {
-            max-width: 800px;
+        .photo:hover img {
+            transform: scale(1.035);
         }
 
-        .about p {
-            color: #aaaaaa;
-
-            font-size: 17px;
-
-            line-height: 2.2;
+        /* 照片全屏浏览 */
+        .photo-viewer {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0,0,0,.96);
+            align-items: center;
+            justify-content: center;
+            padding: 60px 80px;
         }
 
+        .photo-viewer.active {
+            display: flex;
+        }
 
-        /* =========================
-           联系方式
-        ========================= */
+        .photo-viewer img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+            user-select: none;
+        }
 
+        .photo-viewer-close,
+        .photo-viewer-prev,
+        .photo-viewer-next {
+            position: absolute;
+            border: none;
+            background: rgba(255,255,255,.12);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background .3s ease;
+        }
+
+        .photo-viewer-close:hover,
+        .photo-viewer-prev:hover,
+        .photo-viewer-next:hover {
+            background: rgba(255,255,255,.28);
+        }
+
+        .photo-viewer-close {
+            top: 25px;
+            right: 30px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            font-size: 28px;
+        }
+
+        .photo-viewer-prev,
+        .photo-viewer-next {
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 60px;
+            border-radius: 6px;
+            font-size: 32px;
+        }
+
+        .photo-viewer-prev { left: 25px; }
+        .photo-viewer-next { right: 25px; }
+
+        .photo-viewer-counter {
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #ccc;
+            font-size: 14px;
+            letter-spacing: 2px;
+        }
+
+        /* 联系方式 */
         .contact p {
-            color: #aaaaaa;
-
-            font-size: 16px;
-
+            color: #aaa;
+            font-size: 15px;
             line-height: 2.5;
         }
 
-
-        /* =========================
-           页脚
-        ========================= */
-
         footer {
-            padding: 50px 20px;
-
+            padding: 42px 20px;
             text-align: center;
-
-            color: #555555;
-
-            font-size: 13px;
+            color: #555;
+            font-size: 12px;
+            letter-spacing: 1px;
+            border-top: 1px solid #202020;
         }
 
+        /* 滚动进入动画 */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity .75s ease, transform .75s ease;
+        }
 
-        /* =========================
-           手机适配
-        ========================= */
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-        @media (max-width: 700px) {
+        @keyframes riseIn {
+            from { opacity: 0; transform: translateY(22px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-            nav {
-                padding: 20px;
+        @keyframes imageReveal {
+            from { opacity: 0; transform: translateY(18px) scale(.985); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes photoDrift {
+            from { object-position: 48% 50%; }
+            to { object-position: 52% 50%; }
+        }
+
+        /* 平板 */
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: minmax(0, 1fr) minmax(260px, .8fr);
+                gap: 38px;
+                padding-left: 6%;
+                padding-right: 6%;
             }
 
-            nav a {
-                margin-left: 10px;
+            .hero-title {
+                font-size: clamp(32px, 4.4vw, 46px);
+            }
 
-                font-size: 12px;
+            .photos {
+                column-count: 2;
+                column-gap: 12px;
+            }
+
+            .photo {
+                margin-bottom: 12px;
+            }
+        }
+
+        /* 手机 */
+        @media (max-width: 700px) {
+            html { scroll-padding-top: 75px; }
+
+            nav {
+                padding: 17px 18px;
             }
 
             .logo {
                 font-size: 14px;
+                letter-spacing: 2px;
             }
 
-            .hero h1 {
-                font-size: 44px;
-
-                letter-spacing: 7px;
+            nav a {
+                margin-left: 11px;
+                font-size: 11px;
             }
 
-            .hero p {
-                font-size: 15px;
-
-                letter-spacing: 4px;
+            .hero {
+                min-height: auto;
+                padding: 112px 22px 65px;
+                grid-template-columns: 1fr;
+                gap: 35px;
             }
-.hero {
-    background-position: center center;
-}
-            section {
-                padding: 80px 20px;
+
+            .hero-copy {
+                order: 1;
+            }
+
+            .hero-image-wrap {
+                order: 2;
+                width: min(100%, 430px);
+                justify-self: center;
+            }
+
+            .hero-image {
+                aspect-ratio: 4 / 4.5;
+            }
+
+            .hero-title {
+                font-size: clamp(31px, 8vw, 42px);
+                letter-spacing: 1px;
+            }
+
+            .hero-summary {
+                font-size: 14px;
+            }
+
+            .about-copy {
+                font-size: 13px;
+            }
+
+            .hero-divider {
+                margin: 23px 0 20px;
+            }
+
+            section.content-section {
+                padding: 75px 20px;
             }
 
             .section-title {
-                font-size: 28px;
+                font-size: 26px;
+                letter-spacing: 3px;
             }
 
-            .works {
+            .video-grid {
                 grid-template-columns: 1fr;
+                gap: 20px;
             }
 
             .photos {
-                grid-template-columns: 1fr;
-            }
-
-            .work {
-                height: 250px;
+                column-count: 2;
+                column-gap: 10px;
             }
 
             .photo {
-                height: 300px;
+                margin-bottom: 10px;
             }
 
+            .photo-viewer {
+                padding: 50px 12px;
+            }
+
+            .photo-viewer-prev,
+            .photo-viewer-next {
+                width: 38px;
+                height: 48px;
+                font-size: 25px;
+            }
+
+            .photo-viewer-prev { left: 8px; }
+            .photo-viewer-next { right: 8px; }
+
+            .photo-viewer-close {
+                top: 12px;
+                right: 12px;
+            }
+
+            .photo-viewer-counter {
+                bottom: 18px;
+            }
         }
 
-/* 视频作品展示 */
-.video-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 28px 22px;
-}
+        @media (max-width: 360px) {
+            nav a {
+                margin-left: 7px;
+                font-size: 10px;
+            }
 
-.video-card {
-    background: #141414;
-    border: 1px solid #292929;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.3s ease, border-color 0.3s ease;
-}
+            .photos {
+                column-count: 1;
+            }
+        }
 
-.video-card:hover {
-    transform: translateY(-4px);
-    border-color: #555;
-}
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+            }
 
-.video-card video {
-    display: block;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    object-fit: contain;
-    background: #000;
-}
-
-.video-info {
-    padding: 15px 18px;
-}
-
-.video-info h3 {
-    margin: 0;
-    font-size: 15px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    color: #eee;
-}
-
-@media (max-width: 768px) {
-    .video-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-}
-
-/* 视频介绍 */
-.video-intro {
-    max-width: 760px;
-    color: #999;
-    font-size: 14px;
-    line-height: 1.9;
-    margin: 0 0 38px;
-}
-
-/* 视频分类板块 */
-.video-group {
-    margin-bottom: 48px;
-}
-
-.video-group-heading {
-    margin-bottom: 20px;
-}
-
-.video-group-heading h3 {
-    color: #fff;
-    font-size: 20px;
-    font-weight: 500;
-    margin: 0 0 10px;
-}
-
-.video-group-heading p {
-    color: #888;
-    font-size: 13px;
-    line-height: 1.8;
-    margin: 0;
-}
-
-/* 单独展示的人物纪实视频 */
-.video-grid-single {
-    grid-template-columns: minmax(0, 1fr);
-}
-
-.video-grid-single .video-card {
-    max-width: 760px;
-    width: 100%;
-}
-
-/* ===== 响应式照片墙优化 ===== */
-
-.photos {
-    column-count: 3;
-    column-gap: 15px;
-    width: 100%;
-}
-
-.photo {
-    break-inside: avoid;
-    -webkit-column-break-inside: avoid;
-    margin-bottom: 15px;
-    height: auto;
-    overflow: hidden;
-}
-
-.photo img {
-    display: block;
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-}
-
-/* 平板：两列 */
-@media (max-width: 900px) {
-    .photos {
-        column-count: 2;
-        column-gap: 12px;
-    }
-
-    .photo {
-        margin-bottom: 12px;
-    }
-}
-
-/* 手机：两列 */
-@media (max-width: 700px) {
-    .photos {
-        column-count: 2;
-        column-gap: 10px;
-    }
-
-    .photo {
-        height: auto;
-        margin-bottom: 10px;
-    }
-
-    .photo img {
-        width: 100%;
-        height: auto;
-    }
-}
-
-/* 极窄屏幕：一列 */
-@media (max-width: 360px) {
-    .photos {
-        column-count: 1;
-    }
-}
-/* =========================
-   照片全屏放大
-========================= */
-
-.photo {
-    cursor: zoom-in;
-}
-
-.photo-viewer {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    background: rgba(0, 0, 0, 0.96);
-    align-items: center;
-    justify-content: center;
-    padding: 60px 80px;
-}
-
-.photo-viewer.active {
-    display: flex;
-}
-
-.photo-viewer img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    display: block;
-    user-select: none;
-}
-
-.photo-viewer-close,
-.photo-viewer-prev,
-.photo-viewer-next {
-    position: absolute;
-    border: none;
-    background: rgba(255,255,255,0.12);
-    color: white;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: 0.3s;
-}
-
-.photo-viewer-close:hover,
-.photo-viewer-prev:hover,
-.photo-viewer-next:hover {
-    background: rgba(255,255,255,0.28);
-}
-
-.photo-viewer-close {
-    top: 25px;
-    right: 30px;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    font-size: 28px;
-}
-
-.photo-viewer-prev,
-.photo-viewer-next {
-    top: 50%;
-    transform: translateY(-50%);
-    width: 48px;
-    height: 60px;
-    border-radius: 6px;
-    font-size: 32px;
-}
-
-.photo-viewer-prev {
-    left: 25px;
-}
-
-.photo-viewer-next {
-    right: 25px;
-}
-
-.photo-viewer-counter {
-    position: absolute;
-    bottom: 25px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #ccc;
-    font-size: 14px;
-    letter-spacing: 2px;
-}
-
-@media (max-width: 700px) {
-    .photo-viewer {
-        padding: 50px 12px;
-    }
-
-    .photo-viewer-prev,
-    .photo-viewer-next {
-        width: 38px;
-        height: 48px;
-        font-size: 25px;
-    }
-
-    .photo-viewer-prev {
-        left: 8px;
-    }
-
-    .photo-viewer-next {
-        right: 8px;
-    }
-
-    .photo-viewer-close {
-        top: 12px;
-        right: 12px;
-    }
-
-    .photo-viewer-counter {
-        bottom: 18px;
-    }
-}
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
     </style>
-
 </head>
 
-
 <body>
-
-
-    <!-- =========================
-         导航
-    ========================= -->
-
+    <!-- 顶部导航 -->
     <nav>
-
-        <div class="logo">
-            熊洋洋
-        </div>
-
+        <a class="logo" href="#home">熊洋洋</a>
         <div>
-
             <a href="#home">首页</a>
-
             <a href="#works">作品</a>
-
             <a href="#photo">照片</a>
-
-            <a href="#about">关于我</a>
-
             <a href="#contact">联系我</a>
-
         </div>
-
     </nav>
 
+    <!-- 首页：左侧介绍，右侧使用原首页工作照 -->
+    <header class="hero" id="home">
+        <div class="hero-copy">
+            <p class="hero-kicker">影像创作者 / 摄像</p>
+            <h1 class="hero-title">用镜头记录真实，<br>用影像表达故事。</h1>
+            <p class="hero-summary">专注人物纪实、商业拍摄、活动记录及企业宣传。</p>
 
-    <!-- =========================
-         首页
-    ========================= -->
+            <div class="eyebrow">ABOUT ME / 关于我</div>
+            <div class="about-copy">
+                <p>我是一名影像创作者，主要关注人物纪实、商业拍摄、活动记录及企业宣传等影像内容。</p>
+                <p>在过往的拍摄实践中，我参与过不同类型的影像项目，不断积累现场拍摄经验，探索镜头语言与画面表达。</p>
+                <p>我希望通过镜头记录人物、故事以及值得被看见的瞬间，在每一次拍摄中提升自己的专业能力。</p>
+            </div>
 
-    <section class="hero" id="home">
+            <div class="hero-divider"></div>
 
-        <h1>
-            熊洋洋
-        </h1>
+            <div class="eyebrow">PROJECT EXPERIENCE / 项目经历</div>
+            <div class="project-list">
+                <article class="project-item">
+                    <h3>中欧国际工商学院（CEIBS）</h3>
+                    <p>参与学院活动、人物采访、会议及课程记录等影像拍摄工作，负责现场画面记录与人物影像采集，积累了不同场景下的拍摄实践经验。</p>
+                    <p>活动记录 · 人物采访 · 会议及课程拍摄</p>
+                </article>
+                <article class="project-item">
+                    <h3>第20届玄奘之路戈壁挑战赛</h3>
+                    <p>参与赛事拍摄，记录赛事过程、参与者状态及现场精彩瞬间。</p>
+                    <p>赛事拍摄 · 人物纪实 · 活动记录</p>
+                </article>
+            </div>
 
-        <p>
-            影像创作者
+            <a class="scroll-cue" href="#works">SCROLL TO EXPLORE</a>
+        </div>
+
+        <div class="hero-image-wrap">
+            <img class="hero-image" src="images/work-background.jpg" alt="工作拍摄现场">
+            <p class="image-caption">WORKING MOMENT / 工作记录</p>
+        </div>
+    </header>
+
+    <!-- 视频作品 -->
+    <section class="content-section" id="works">
+        <h2 class="section-title reveal">视频作品</h2>
+        <p class="video-intro reveal">
+            通过镜头记录人物、活动与真实场景，作品涵盖人物纪实及拍摄花絮。
+            展示拍摄现场、镜头运用与影像记录能力，呈现实际拍摄经验与现场执行过程。
         </p>
 
-        <a href="#works" class="enter">
-            查看作品
-        </a>
+        <div class="video-group reveal">
+            <div class="video-group-heading">
+                <h3>人物纪实</h3>
+                <p>以真实人物为拍摄主体，通过镜头记录人物状态与细节，注重画面表达、情绪捕捉与纪实感。</p>
+            </div>
+            <div class="video-grid video-grid-single">
+                <div class="video-card">
+                    <video controls playsinline preload="none" poster="cover-7.jpg" controlsList="nodownload" oncontextmenu="return false;">
+                        <source src="https://media.xiadayang.com/video%20(7).mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
 
+        <div class="video-group reveal">
+            <div class="video-group-heading">
+                <h3>拍摄花絮</h3>
+                <p>记录实际拍摄现场与幕后工作，展现拍摄过程、现场配合及影像制作中的工作状态。</p>
+            </div>
+            <div class="video-grid">
+                <div class="video-card">
+                    <video controls playsinline preload="none" poster="cover-1.jpg" controlsList="nodownload" oncontextmenu="return false;">
+                        <source src="https://media.xiadayang.com/video%20(1).mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-card">
+                    <video controls playsinline preload="none" poster="cover-3.jpg" controlsList="nodownload" oncontextmenu="return false;">
+                        <source src="https://media.xiadayang.com/video%20(3).mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-card">
+                    <video controls playsinline preload="none" poster="cover-4.jpg" controlsList="nodownload" oncontextmenu="return false;">
+                        <source src="https://media.xiadayang.com/video%20(4).mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-card">
+                    <video controls playsinline preload="none" poster="cover-5.jpg" controlsList="nodownload" oncontextmenu="return false;">
+                        <source src="https://media.xiadayang.com/video%20(5).mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-card">
+                    <video controls playsinline preload="none" poster="cover-6.jpg" controlsList="nodownload" oncontextmenu="return false;">
+                        <source src="https://media.xiadayang.com/video%20(6).mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-card">
+                    <video controls playsinline preload="none" poster="cover-8.jpg" controlsList="nodownload" oncontextmenu="return false;">
+                        <source src="https://media.xiadayang.com/video%20(8).mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-card">
+                    <video controls playsinline preload="none" poster="cover-9.jpg" controlsList="nodownload" oncontextmenu="return false;">
+                        <source src="https://media.xiadayang.com/video%20(9).mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-card">
+                    <video controls playsinline preload="none" poster="cover-2.jpg" controlsList="nodownload" oncontextmenu="return false;">
+                        <source src="https://media.xiadayang.com/video%20(2).mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
     </section>
 
+    <!-- 照片作品：保留原有照片序号，已删除的第11张不再引用 -->
+    <section class="content-section" id="photo">
+        <h2 class="section-title reveal">照片作品</h2>
+        <p class="section-subtitle reveal">PHOTOGRAPHY / 摄影记录</p>
 
-    <!-- =========================
-         视频作品
-    ========================= -->
-
-    <section id="works">
-
-        <h2 class="section-title">
-            视频作品
-        </h2>
-
-
-       
-
-
-<p class="video-intro">
-    通过镜头记录人物、活动与真实场景，作品涵盖人物纪实及拍摄花絮。
-    展示拍摄现场、镜头运用与影像记录能力，呈现实际拍摄经验与现场执行过程。
-</p>
-
-<!-- 人物纪实 -->
-<div class="video-group">
-    <div class="video-group-heading">
-        <h3>人物纪实</h3>
-        <p>以真实人物为拍摄主体，通过镜头记录人物状态与细节，注重画面表达、情绪捕捉与纪实感。</p>
-    </div>
-
-    <div class="video-grid video-grid-single">
-        <div class="video-card">
-          <video controls playsinline preload="none" poster="cover-7.jpg" controlsList="nodownload" oncontextmenu="return false;">
-                <source src="https://media.xiadayang.com/video%20(7).mp4" type="video/mp4">
-            </video>
-        </div>
-    </div>
-</div>
-
-<!-- 拍摄花絮 -->
-<div class="video-group">
-    <div class="video-group-heading">
-        <h3>拍摄花絮</h3>
-        <p>记录实际拍摄现场与幕后工作，展现拍摄过程、现场配合及影像制作中的工作状态。</p>
-    </div>
-
-    <div class="video-grid">
-
-        <div class="video-card">
-           <video controls playsinline preload="none" poster="cover-1.jpg" controlsList="nodownload" oncontextmenu="return false;">
-                <source src="https://media.xiadayang.com/video%20(1).mp4" type="video/mp4">
-            </video>
-        </div>
-
-        <div class="video-card">
-            <video controls playsinline preload="none" poster="cover-3.jpg" controlsList="nodownload" oncontextmenu="return false;">
-                <source src="https://media.xiadayang.com/video%20(3).mp4" type="video/mp4">
-            </video>
-        </div>
-
-        <div class="video-card">
-           <video controls playsinline preload="none" poster="cover-4.jpg" controlsList="nodownload" oncontextmenu="return false;">
-                <source src="https://media.xiadayang.com/video%20(4).mp4" type="video/mp4">
-            </video>
-        </div>
-
-        <div class="video-card">
-            <video controls playsinline preload="none" poster="cover-5.jpg" controlsList="nodownload" oncontextmenu="return false;">
-                <source src="https://media.xiadayang.com/video%20(5).mp4" type="video/mp4">
-            </video>
-        </div>
-
-        <div class="video-card">
-            <video controls playsinline preload="none" poster="cover-6.jpg" controlsList="nodownload" oncontextmenu="return false;">
-                <source src="https://media.xiadayang.com/video%20(6).mp4" type="video/mp4">
-            </video>
+        <div class="photos">
+            <div class="photo"><img src="images/照片%20(1).jpg" alt="作品照片1"></div>
+            <div class="photo"><img src="images/照片%20(2).jpg" alt="作品照片2"></div>
+            <div class="photo"><img src="images/照片%20(3).jpg" alt="作品照片3"></div>
+            <div class="photo"><img src="images/照片%20(4).jpg" alt="作品照片4"></div>
+            <div class="photo"><img src="images/照片%20(5).jpg" alt="作品照片5"></div>
+            <div class="photo"><img src="images/照片%20(6).jpg" alt=""></div>
+            <div class="photo"><img src="images/照片%20(7).jpg" alt=""></div>
+            <div class="photo"><img src="images/照片%20(8).jpg" alt=""></div>
+            <div class="photo"><img src="images/照片%20(9).jpg" alt=""></div>
+            <div class="photo"><img src="images/照片%20(10).jpg" alt=""></div>
+            <div class="photo"><img src="images/照片%20(12).jpg" alt=""></div>
+            <div class="photo"><img src="images/照片%20(13).jpg" alt=""></div>
+            <div class="photo"><img src="images/照片%20(14).jpg" alt=""></div>
+            <div class="photo"><img src="images/照片%20(15).jpg" alt=""></div>
+            <div class="photo"><img src="images/照片%20(16).jpg" alt=""></div>
+            <div class="photo"><img src="images/照片%20(17).jpg" alt=""></div>
+            <div class="photo"><img src="images/照片%20(18).jpg" alt=""></div>
+            <div class="photo"><img src="images/照片%20(19).jpg" alt=""></div>
+            <div class="photo"><img src="images/照片%20(20).jpg" alt=""></div>
+            <div class="photo"><img src="images/照片%20(21).jpg" alt=""></div>
+            <div class="photo"><img src="images/照片%20(22).jpg" alt=""></div>
+            <div class="photo"><img src="images/照片%20(23).jpg" alt=""></div>
+            <div class="photo"><img src="images/照片%20(24).jpg" alt=""></div>
+            <div class="photo"><img src="images/照片%20(25).jpg" alt=""></div>
+            <div class="photo"><img src="images/照片%20(26).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(27).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(28).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(29).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(30).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(31).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(32).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(33).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(34).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(35).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(36).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(37).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(38).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(39).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(40).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(41).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(42).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(43).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(44).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(45).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(46).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(47).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(48).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(49).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(50).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(51).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(52).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(53).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(54).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(55).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(56).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(57).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(58).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(59).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(60).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(61).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(62).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(63).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(64).jpg" alt="" loading="lazy"></div>
+            <div class="photo"><img src="images/照片%20(65).jpg" alt="" loading="lazy"></div>
         </div>
 
-        <div class="video-card">
-           <video controls playsinline preload="none" poster="cover-8.jpg" controlsList="nodownload" oncontextmenu="return false;">
-                <source src="https://media.xiadayang.com/video%20(8).mp4" type="video/mp4">
-            </video>
+        <!-- 照片放大浏览窗口 -->
+        <div class="photo-viewer" id="photoViewer">
+            <button class="photo-viewer-close" id="photoClose" aria-label="关闭">×</button>
+            <button class="photo-viewer-prev" id="photoPrev" aria-label="上一张">‹</button>
+            <img id="photoViewerImage" src="" alt="放大照片">
+            <button class="photo-viewer-next" id="photoNext" aria-label="下一张">›</button>
+            <div class="photo-viewer-counter" id="photoCounter">1 / 64</div>
         </div>
-
-        <div class="video-card">
-            <video controls playsinline preload="none" poster="cover-9.jpg" controlsList="nodownload" oncontextmenu="return false;">
-                <source src="https://media.xiadayang.com/video%20(9).mp4" type="video/mp4">
-            </video>
-        </div>
-
-        <div class="video-card">
-           <video controls playsinline preload="none" poster="cover-2.jpg" controlsList="nodownload" oncontextmenu="return false;">
-                <source src="https://media.xiadayang.com/video%20(2).mp4" type="video/mp4">
-            </video>
-        </div>
-
-    </div>
-</div>
-
-
     </section>
 
-
-    <!-- =========================
-         照片作品
-    ========================= -->
-
-    <section id="photo">
-
-        <h2 class="section-title">
-            照片作品
-        </h2>
-
-
-      <div class="photos">
-
-    <div class="photo">
-        <img src="images/照片%20(1).jpg" alt="作品照片1">
-    </div>
-
-    <div class="photo">
-        <img src="images/照片%20(2).jpg" alt="作品照片2">
-    </div>
-
-    <div class="photo">
-        <img src="images/照片%20(3).jpg" alt="作品照片3">
-    </div>
-
-    <div class="photo">
-        <img src="images/照片%20(4).jpg" alt="作品照片4">
-    </div>
-
-    <div class="photo">
-        <img src="images/照片%20(5).jpg" alt="作品照片5">
-    </div>
-<div class="photo"><img src="images/照片%20(6).jpg" alt=""></div>
-<div class="photo"><img src="images/照片%20(7).jpg" alt=""></div>
-<div class="photo"><img src="images/照片%20(8).jpg" alt=""></div>
-<div class="photo"><img src="images/照片%20(9).jpg" alt=""></div>
-<div class="photo"><img src="images/照片%20(10).jpg" alt=""></div>
-
-<div class="photo"><img src="images/照片%20(12).jpg" alt=""></div>
-<div class="photo"><img src="images/照片%20(13).jpg" alt=""></div>
-<div class="photo"><img src="images/照片%20(14).jpg" alt=""></div>
-<div class="photo"><img src="images/照片%20(15).jpg" alt=""></div>
-<div class="photo"><img src="images/照片%20(16).jpg" alt=""></div>
-<div class="photo"><img src="images/照片%20(17).jpg" alt=""></div>
-<div class="photo"><img src="images/照片%20(18).jpg" alt=""></div>
-<div class="photo"><img src="images/照片%20(19).jpg" alt=""></div>
-<div class="photo"><img src="images/照片%20(20).jpg" alt=""></div>
-<div class="photo"><img src="images/照片%20(21).jpg" alt=""></div>
-<div class="photo"><img src="images/照片%20(22).jpg" alt=""></div>
-<div class="photo"><img src="images/照片%20(23).jpg" alt=""></div>
-<div class="photo"><img src="images/照片%20(24).jpg" alt=""></div>
-<div class="photo"><img src="images/照片%20(25).jpg" alt=""></div>
-<div class="photo"><img src="images/照片%20(26).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(27).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(28).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(29).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(30).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(31).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(32).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(33).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(34).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(35).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(36).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(37).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(38).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(39).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(40).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(41).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(42).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(43).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(44).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(45).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(46).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(47).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(48).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(49).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(50).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(51).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(52).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(53).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(54).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(55).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(56).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(57).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(58).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(59).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(60).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(61).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(62).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(63).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(64).jpg" alt="" loading="lazy"></div>
-<div class="photo"><img src="images/照片%20(65).jpg" alt="" loading="lazy"></div>
-</div>
-      <!-- 照片放大浏览窗口 -->
-<div class="photo-viewer" id="photoViewer">
-
-    <button class="photo-viewer-close" id="photoClose" aria-label="关闭">×</button>
-
-    <button class="photo-viewer-prev" id="photoPrev" aria-label="上一张">‹</button>
-
-    <img id="photoViewerImage" src="" alt="放大照片">
-
-    <button class="photo-viewer-next" id="photoNext" aria-label="下一张">›</button>
-
-    <div class="photo-viewer-counter" id="photoCounter">1 / 65</div>
-
-</div>  
-    </section>
-
-
-    <!-- =========================
-         关于我
-    ========================= -->
-
-    <section id="about">
-
-        <h2 class="section-title">
-            关于我
-        </h2>
-
-
-        <div class="about">
-
-            <p>
-
-                一名摄像师和影像创作者。
-
-                <br><br>
-
-                主要从事商业影像、人物采访、活动纪录、
-                企业宣传等视频拍摄工作。
-
-                <br><br>
-
-                我希望通过镜头记录人物、故事以及真实发生的瞬间，
-                不断学习和提升自己的影像表达能力。
-
-            </p>
-
+    <!-- 联系我 -->
+    <section class="content-section" id="contact">
+        <h2 class="section-title reveal">联系我</h2>
+        <p class="section-subtitle reveal">CONTACT / 保持联系</p>
+        <div class="contact reveal">
+            <p>微信：17152156883</p>
+            <p>邮箱：2050137537@qq.com</p>
         </div>
-
     </section>
 
+    <footer>© 2026 熊洋洋 · 个人影像作品集</footer>
 
-    <!-- =========================
-         联系我
-    ========================= -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 播放一个视频时，自动暂停其他视频
+            const videos = document.querySelectorAll('.video-grid video');
 
-    <section id="contact">
-
-        <h2 class="section-title">
-            联系我
-        </h2>
-
-
-        <div class="contact">
-
-            <p>
-
-                微信：17152156883
-
-                <br>
-
-                邮箱：2050137537@qq.com
-
-                <br>
-
-                
-
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         页脚
-    ========================= -->
-
-    <footer>
-
-        © 2026 熊洋洋 · 个人影像作品集
-
-    </footer>
-
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const videos = document.querySelectorAll('.video-grid video');
-
-    videos.forEach(function (video) {
-        // 点击播放时，暂停其他视频
-        video.addEventListener('play', function () {
-            videos.forEach(function (otherVideo) {
-                if (otherVideo !== video) {
-                    otherVideo.pause();
-                }
+            videos.forEach(function (video) {
+                video.addEventListener('play', function () {
+                    videos.forEach(function (otherVideo) {
+                        if (otherVideo !== video) otherVideo.pause();
+                    });
+                });
             });
+
+            // 照片放大、序号、上一张/下一张
+            const photos = Array.from(document.querySelectorAll('.photos .photo img'));
+            const viewer = document.getElementById('photoViewer');
+            const viewerImage = document.getElementById('photoViewerImage');
+            const counter = document.getElementById('photoCounter');
+            const closeBtn = document.getElementById('photoClose');
+            const prevBtn = document.getElementById('photoPrev');
+            const nextBtn = document.getElementById('photoNext');
+            let currentIndex = 0;
+            let touchStartX = 0;
+
+            function showPhoto(index) {
+                currentIndex = (index + photos.length) % photos.length;
+                const photo = photos[currentIndex];
+                viewerImage.src = photo.currentSrc || photo.src;
+                viewerImage.alt = photo.alt || '作品照片';
+                counter.textContent = (currentIndex + 1) + ' / ' + photos.length;
+                viewer.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeViewer() {
+                viewer.classList.remove('active');
+                viewerImage.src = '';
+                document.body.style.overflow = '';
+            }
+
+            photos.forEach(function (photo, index) {
+                photo.addEventListener('click', function () {
+                    showPhoto(index);
+                });
+            });
+
+            closeBtn.addEventListener('click', closeViewer);
+            nextBtn.addEventListener('click', function () { showPhoto(currentIndex + 1); });
+            prevBtn.addEventListener('click', function () { showPhoto(currentIndex - 1); });
+
+            viewer.addEventListener('click', function (event) {
+                if (event.target === viewer) closeViewer();
+            });
+
+            document.addEventListener('keydown', function (event) {
+                if (!viewer.classList.contains('active')) return;
+                if (event.key === 'Escape') closeViewer();
+                if (event.key === 'ArrowRight') showPhoto(currentIndex + 1);
+                if (event.key === 'ArrowLeft') showPhoto(currentIndex - 1);
+            });
+
+            viewerImage.addEventListener('touchstart', function (event) {
+                touchStartX = event.changedTouches[0].screenX;
+            }, { passive: true });
+
+            viewerImage.addEventListener('touchend', function (event) {
+                const distance = event.changedTouches[0].screenX - touchStartX;
+                if (Math.abs(distance) > 50) {
+                    showPhoto(currentIndex + (distance < 0 ? 1 : -1));
+                }
+            }, { passive: true });
+
+            // 内容进入视口时渐显；不支持时保持内容正常显示
+            const revealItems = document.querySelectorAll('.reveal, .video-group');
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver(function (entries, obs) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            obs.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.12 });
+
+                revealItems.forEach(function (item) {
+                    item.classList.add('reveal');
+                    observer.observe(item);
+                });
+            } else {
+                revealItems.forEach(function (item) {
+                    item.classList.add('is-visible');
+                });
+            }
         });
-    });
-});
-</script>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-
-    const photos = Array.from(
-        document.querySelectorAll('.photos .photo img')
-    );
-
-    const viewer = document.getElementById('photoViewer');
-    const viewerImage = document.getElementById('photoViewerImage');
-    const counter = document.getElementById('photoCounter');
-
-    const closeBtn = document.getElementById('photoClose');
-    const prevBtn = document.getElementById('photoPrev');
-    const nextBtn = document.getElementById('photoNext');
-
-    let currentIndex = 0;
-    let touchStartX = 0;
-
-    function showPhoto(index) {
-        currentIndex = (index + photos.length) % photos.length;
-
-        const photo = photos[currentIndex];
-
-        viewerImage.src = photo.currentSrc || photo.src;
-        viewerImage.alt = photo.alt || '作品照片';
-
-        counter.textContent = (currentIndex + 1) + ' / ' + photos.length;
-
-        viewer.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeViewer() {
-        viewer.classList.remove('active');
-        viewerImage.src = '';
-        document.body.style.overflow = '';
-    }
-
-    function showNext() {
-        showPhoto(currentIndex + 1);
-    }
-
-    function showPrev() {
-        showPhoto(currentIndex - 1);
-    }
-
-    photos.forEach(function (photo, index) {
-        photo.addEventListener('click', function () {
-            showPhoto(index);
-        });
-    });
-
-    closeBtn.addEventListener('click', closeViewer);
-    nextBtn.addEventListener('click', showNext);
-    prevBtn.addEventListener('click', showPrev);
-
-    viewer.addEventListener('click', function (event) {
-        if (event.target === viewer) {
-            closeViewer();
-        }
-    });
-
-    document.addEventListener('keydown', function (event) {
-        if (!viewer.classList.contains('active')) return;
-
-        if (event.key === 'Escape') closeViewer();
-        if (event.key === 'ArrowRight') showNext();
-        if (event.key === 'ArrowLeft') showPrev();
-    });
-
-    viewerImage.addEventListener('touchstart', function (event) {
-        touchStartX = event.changedTouches[0].screenX;
-    }, { passive: true });
-
-    viewerImage.addEventListener('touchend', function (event) {
-        const touchEndX = event.changedTouches[0].screenX;
-        const distance = touchEndX - touchStartX;
-
-        if (Math.abs(distance) > 50) {
-            if (distance < 0) showNext();
-            else showPrev();
-        }
-    }, { passive: true });
-
-});
-</script>
+    </script>
 </body>
-
 </html>
