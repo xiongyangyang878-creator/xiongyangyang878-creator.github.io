@@ -312,7 +312,16 @@
             overflow: hidden;
             background: #1a1a1a;
             cursor: zoom-in;
-            transition: transform .35s ease;
+            transition: transform .35s ease, opacity .75s ease, filter .75s ease;
+            opacity: 0;
+            transform: translateY(22px);
+            filter: blur(5px);
+        }
+
+        .photo.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
         }
 
         .photo img {
@@ -599,6 +608,12 @@
                 opacity: 1;
                 transform: none;
             }
+
+            .photo {
+                opacity: 1;
+                transform: none;
+                filter: none;
+            }
         }
     </style>
 </head>
@@ -606,7 +621,7 @@
 <body>
     <!-- 顶部导航 -->
     <nav>
-        <a class="logo" href="#home">XIONG YANG YANG</a>
+        <a class="logo" href="#home">熊洋洋</a>
         <div>
             <a href="#home">首页</a>
             <a href="#works">作品</a>
@@ -618,7 +633,7 @@
     <!-- 首页：左侧介绍，右侧使用原首页工作照 -->
     <header class="hero" id="home">
         <div class="hero-copy">
-            <p class="hero-kicker">影像创作者 </p>
+            <p class="hero-kicker">影像创作者 / 摄像</p>
             <h1 class="hero-title">用镜头记录真实，<br>用影像表达故事。</h1>
             <p class="hero-summary">专注人物纪实、商业拍摄、活动记录及企业宣传。</p>
 
@@ -865,6 +880,68 @@
                     showPhoto(index);
                 });
             });
+
+            // 照片墙按页面顺序逐张显现，避免图片加载完成顺序不同造成跳动
+            const photoCards = Array.from(document.querySelectorAll('.photos .photo'));
+            if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                const pendingPhotos = new Set();
+                let revealing = false;
+
+                function addToPhotoQueue(card) {
+                    if (card.dataset.ready === 'true') return;
+                    card.dataset.ready = 'true';
+                    pendingPhotos.add(card);
+                    processPhotoQueue();
+                }
+
+                async function processPhotoQueue() {
+                    if (revealing) return;
+                    revealing = true;
+                    while (pendingPhotos.size) {
+                        const nextCard = Array.from(pendingPhotos).sort(function (a, b) {
+                            return photoCards.indexOf(a) - photoCards.indexOf(b);
+                        })[0];
+                        pendingPhotos.delete(nextCard);
+                        const img = nextCard.querySelector('img');
+                        if (img && img.complete && img.naturalWidth > 0 && img.decode) {
+                            try { await img.decode(); } catch (error) {}
+                        }
+                        nextCard.classList.add('is-visible');
+                        await new Promise(function (resolve) { setTimeout(resolve, 115); });
+                    }
+                    revealing = false;
+                }
+
+                const photoObserver = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (!entry.isIntersecting) return;
+                        const card = entry.target;
+                        const img = card.querySelector('img');
+                        if (!img) {
+                            addToPhotoQueue(card);
+                            photoObserver.unobserve(card);
+                            return;
+                        }
+                        if (img.complete && img.naturalWidth > 0) {
+                            addToPhotoQueue(card);
+                            photoObserver.unobserve(card);
+                        } else {
+                            img.addEventListener('load', function () {
+                                addToPhotoQueue(card);
+                                photoObserver.unobserve(card);
+                            }, { once: true });
+                            img.addEventListener('error', function () {
+                                addToPhotoQueue(card);
+                                photoObserver.unobserve(card);
+                            }, { once: true });
+                        }
+                    });
+                }, { threshold: 0.05, rootMargin: '0px 0px 80px 0px' });
+
+                photoCards.forEach(function (card) { photoObserver.observe(card); });
+            } else {
+                photoCards.forEach(function (card) { card.classList.add('is-visible'); });
+            }
 
             closeBtn.addEventListener('click', closeViewer);
             nextBtn.addEventListener('click', function () { showPhoto(currentIndex + 1); });
